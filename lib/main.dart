@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quirk/quirk.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,31 +8,42 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of the application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Quirk',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Quirk(title: 'Quirk'),
+      home: const MyHomePage(title: 'Quirk Canvas'),
     );
   }
 }
 
-class Quirk extends StatefulWidget {
-  const Quirk({Key? key, required this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<Quirk> createState() => _QuirkState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _QuirkState extends State<Quirk> {
+class _MyHomePageState extends State<MyHomePage> {
+  var color = Colors.blue;
+
   @override
   Widget build(BuildContext context) {
-    return const Text('Work in progress');
+    return Container(
+      width: 1000.0,
+      height: 1000.0,
+      color: Colors.white,
+      child: CustomPaint(
+        painter: Quirk(),
+        size: const Size.square(1000.0),
+        // For painting on foreground
+        // foregroundPainter: DemoPainter(),
+      ),
+    );
   }
 }
