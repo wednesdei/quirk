@@ -34,15 +34,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 1000.0,
-      height: 1000.0,
-      color: Colors.white,
-      child: CustomPaint(
-        painter: Quirk(),
-        size: const Size.square(1000.0),
-        // For painting on foreground
-        // foregroundPainter: DemoPainter(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: const SizedBox.square(
+        dimension: 600,
+        child: Quirk(),
       ),
     );
   }

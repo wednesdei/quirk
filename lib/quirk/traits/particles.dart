@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'dart:math';
-import 'package:vector_math/vector_math.dart';
-import 'package:flutter/painting.dart';
+import 'package:flutter/material.dart';
+import 'package:quirk/quirk.dart';
 
 quirkGrid(canvas, size) {
   var backgroundGradient = const LinearGradient(
@@ -19,6 +19,15 @@ quirkGrid(canvas, size) {
     ],
     tileMode: TileMode.mirror,
   );
+
+  /// Create a nice gradient background to work on
+  canvas.drawPaint(
+    Paint()
+      ..shader = backgroundGradient.createShader(
+        Rect.fromLTWH(0, 0, size.width, size.height),
+      ),
+  );
+
   var gridPoints = const RadialGradient(
     center: Alignment.center,
     radius: 1.0,
@@ -29,25 +38,15 @@ quirkGrid(canvas, size) {
     tileMode: TileMode.clamp,
   );
 
-  /// Create a nice gradient background to work on
-  canvas.drawPaint(
-    Paint()
-      ..shader = backgroundGradient.createShader(
-        Rect.fromLTWH(0, 0, size.width, size.height),
-      ),
-  );
-
   /// World options
   var width = size.width;
   var height = size.height;
   var scale = 20.0;
   var numberOfColumns = width / scale;
   var numberOfRows = height / scale;
-  List<Offset> verticies = [];
-  List<Vector3> triangles = [];
-
   void createGrid(canvas, size) {
     /// Create a grid of points
+
     for (int y = 0; y < numberOfRows; y++) {
       for (int x = 0; x < numberOfColumns; x++) {
         var radius = 1.0;
@@ -56,27 +55,46 @@ quirkGrid(canvas, size) {
           ..shader = gridPoints
               .createShader(Rect.fromLTWH(0, 0, radius * 2, radius * 2));
         canvas.drawCircle(center, radius, paint);
-      }
-    }
+      } // end for x
+    } // end for y
   }
 
-  void createTriangles(canvas, size) {
+  createTriangles(canvas, size) {
+    canvas.save();
+    canvas.translate(width / 2, height / 2);
+    canvas.scale(0.5, 0.5);
+    canvas.translate(-width / 2, -height / 2);
+
+    final linePaint = Paint()
+      ..color = Colors.black
+      ..strokeWidth = 1.0;
     for (int y = 0; y < numberOfRows; y++) {
       for (int x = 0; x < numberOfColumns; x++) {
-        verticies.add(Offset(x * scale, y * scale));
-        canvas.drawLine(x * scale, y * scale);
-        verticies.add(Offset(x * scale, (y + 1) * scale));
-        triangles.add(Vector3(x * scale, y * scale, (y + 1) * scale));
+        var linePoint1 = Offset(x * scale, y * scale);
+        var linePoint2 = Offset((x + 1) * scale, y * scale);
+        canvas.drawLine(linePoint1, linePoint2, linePaint);
+
+        var linePoint3 = Offset(x * scale, (y + 1) * scale);
+        var linePoint4 = Offset((x + 1) * scale, (y) * scale);
+        canvas.drawLine(linePoint3, linePoint4, linePaint);
+
+        var linePoint5 = Offset((x) * scale, (y) * scale);
+        var linePoint6 = Offset(x * scale, (y + 1) * scale);
+        canvas.drawLine(linePoint5, linePoint6, linePaint);
+
         var radius = 1.0;
         var center = Offset(x * scale, y * scale);
         var paint = Paint()
           ..shader = gridPoints
               .createShader(Rect.fromLTWH(0, 0, radius * 2, radius * 2));
         canvas.drawCircle(center, radius, paint);
-      }
-    }
+      } // end for x
+    } // end for y
+    canvas.save();
+    canvas.restore();
+    return canvas;
   }
 
-  //createGrid(canvas, size);
+  createGrid(canvas, size);
   createTriangles(canvas, size);
 }

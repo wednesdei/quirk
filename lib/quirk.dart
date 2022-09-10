@@ -5,17 +5,33 @@ import 'package:quirk/quirk/traits/particles.dart';
 
 /// Create a Quirk custom painter to make really cool stuff
 
-class Quirk extends CustomPainter {
-  // Colors, will need to move later
+class Quirk extends StatefulWidget {
+  const Quirk({Key? key}) : super(key: key);
 
-  // Provide a canvas to draw on
+  @override
+  State<Quirk> createState() => _QuirkState();
+}
+
+class _QuirkState extends State<Quirk> {
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: QuirkPainter(),
+      child: Container(
+        alignment: Alignment.center,
+        width: 500.0,
+        height: 500.0,
+      ),
+    );
+  }
+}
+
+class QuirkPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    print(size);
-    // Create a circle
-    // extraCircles(canvas, size);
-    // extraSmallerCircles(canvas, size);
-    quirkGrid(canvas, size);
+    //quirkGrid(canvas, size);
+    extraCircles(canvas, size);
+    extraSmallerCircles(canvas, size);
   }
 
   extraCircles(canvas, size) {
