@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'ui/home/screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,12 +13,12 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        accentColor: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       darkTheme: ThemeData.dark().copyWith(
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      // ignore: prefer_const_constructors
       home: HomeScreen(),
     );
   }

@@ -1,7 +1,9 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter/gestures.dart';
+//import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,7 +19,7 @@ class CanvasController {
   Stream<CanvasController> get stream => _controller.stream;
 
   /// Emit a new event to rebuild the UI
-  void add([CanvasController val]) => _controller.add(val ?? this);
+  void add([CanvasController? val]) => _controller.add(val ?? this);
 
   /// Stop the stream and finish
   void close() {
@@ -64,16 +66,16 @@ class CanvasController {
     }
     // Directional Keys
     if (key.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
-      offset = offset + Offset(offsetAdjust, 0.0);
+      offset = offset + const Offset(offsetAdjust, 0.0);
     }
     if (key.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
-      offset = offset + Offset(-offsetAdjust, 0.0);
+      offset = offset + const Offset(-offsetAdjust, 0.0);
     }
     if (key.isKeyPressed(LogicalKeyboardKey.arrowUp)) {
-      offset = offset + Offset(0.0, offsetAdjust);
+      offset = offset + const Offset(0.0, offsetAdjust);
     }
     if (key.isKeyPressed(LogicalKeyboardKey.arrowDown)) {
-      offset = offset + Offset(0.0, -offsetAdjust);
+      offset = offset + const Offset(0.0, -offsetAdjust);
     }
 
     _shiftPressed = key.isShiftPressed;
@@ -100,7 +102,7 @@ class CanvasController {
 
   /// Marquee selection on the canvas
   RectPoints get marquee => _marquee;
-  RectPoints _marquee;
+  RectPoints _marquee = RectPoints(Offset.zero, Offset.zero);
 
   /// Dragging a canvas object
   bool get isMovingCanvasObject => _isMovingCanvasObject;
@@ -127,7 +129,7 @@ class CanvasController {
 
   /// Called when any of the inputs update position
   void updateTouch(int pointer, Offset offsetVal, Offset globalVal) {
-    if (_marquee != null) {
+    if (_marquee.rect != Rect.zero) {
       // Update New Widget Rect
       final _pts = _marquee;
       final a = _pointerMap.values.first;
@@ -194,8 +196,8 @@ class CanvasController {
     if (touchCount < 1) {
       _isMovingCanvasObject = false;
     }
-    if (_marquee != null) {
-      _marquee = null;
+    if (_marquee != RectPoints(Offset.zero, Offset.zero)) {
+      _marquee = RectPoints(Offset.zero, Offset.zero);
       _shiftPressed = false;
     }
 

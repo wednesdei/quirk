@@ -12,15 +12,15 @@ class CanvasObject<T> {
     this.dy = 0,
     this.width = 100,
     this.height = 100,
-    this.child,
+    required this.child,
   });
 
   CanvasObject<T> copyWith({
-    double dx,
-    double dy,
-    double width,
-    double height,
-    T child,
+    double? dx,
+    double? dy,
+    double? width,
+    double? height,
+    T? child,
   }) {
     return CanvasObject<T>(
       dx: dx ?? this.dx,

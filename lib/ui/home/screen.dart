@@ -2,12 +2,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../src/classes/canvas_object.dart';
+import '../../src/classes/rect_points.dart';
 import '../../src/controllers/canvas.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomeScreenState createState() => _HomeScreenState();
 }
 
@@ -65,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (!snapshot.hasData) {
             return Scaffold(
               appBar: AppBar(),
-              body: Center(child: CircularProgressIndicator()),
+              body: const Center(child: CircularProgressIndicator()),
             );
           }
           final instance = snapshot.data;
@@ -76,9 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   canRequestFocus: false,
                   child: IconButton(
                     tooltip: 'Selection',
-                    icon: Icon(Icons.select_all),
-                    color: instance.shiftPressed
-                        ? Theme.of(context).accentColor
+                    icon: const Icon(Icons.select_all),
+                    color: instance!.shiftPressed
+                        ? Theme.of(context).highlightColor
                         : null,
                     onPressed: _controller.shiftSelect,
                   ),
@@ -88,9 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: IconButton(
                     tooltip: 'Meta Key',
                     color: instance.metaPressed
-                        ? Theme.of(context).accentColor
+                        ? Theme.of(context).highlightColor
                         : null,
-                    icon: Icon(Icons.category),
+                    icon: const Icon(Icons.category),
                     onPressed: _controller.metaSelect,
                   ),
                 ),
@@ -98,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   canRequestFocus: false,
                   child: IconButton(
                     tooltip: 'Zoom In',
-                    icon: Icon(Icons.zoom_in),
+                    icon: const Icon(Icons.zoom_in),
                     onPressed: _controller.zoomIn,
                   ),
                 ),
@@ -106,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   canRequestFocus: false,
                   child: IconButton(
                     tooltip: 'Zoom Out',
-                    icon: Icon(Icons.zoom_out),
+                    icon: const Icon(Icons.zoom_out),
                     onPressed: _controller.zoomOut,
                   ),
                 ),
@@ -114,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   canRequestFocus: false,
                   child: IconButton(
                     tooltip: 'Reset the Scale and Offset',
-                    icon: Icon(Icons.restore),
+                    icon: const Icon(Icons.restore),
                     onPressed: _controller.reset,
                   ),
                 ),
@@ -190,7 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                      if (instance?.marquee != null)
+                      if (instance.marquee !=
+                          RectPoints(Offset.zero, Offset.zero))
                         Positioned.fromRect(
                           rect: instance.marquee.rect
                               .adjusted(instance.offset, instance.scale),
