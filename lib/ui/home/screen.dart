@@ -26,9 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void _dummyData() {
     _controller.addObject(
       CanvasObject(
-        dx: 20,
-        dy: 20,
-        width: 100,
+        dx: 0.0,
+        dy: 0.0,
+        width: 100.0,
         height: 100,
         child: Container(color: Colors.red),
       ),

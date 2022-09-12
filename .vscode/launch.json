@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter (lib\\src\\classes\\matrix.dart)",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib\\src\\classes\\matrix.dart"
+        }
+    ]
+}
