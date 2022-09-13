@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../../src/classes/canvas_object.dart';
 import '../../src/classes/rect_points.dart';
 import '../../src/controllers/canvas.dart';
+import 'animation.dart';
+import 'stagger.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,13 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void _dummyData() {
     _controller.addObject(
       CanvasObject(
-        dx: 0.0,
-        dy: 0.0,
-        width: 100.0,
-        height: 100,
-        child: Container(color: Colors.red),
+        dx: 200.0,
+        dy: 200.0,
+        width: 300.0,
+        height: 300.0,
+        child: const LogoApp(),
       ),
     );
+
     _controller.addObject(
       CanvasObject(
         dx: 80,
@@ -42,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(color: Colors.green),
       ),
     );
+
     _controller.addObject(
       CanvasObject(
         dx: 100,
@@ -49,6 +53,36 @@ class _HomeScreenState extends State<HomeScreen> {
         width: 100,
         height: 50,
         child: Container(color: Colors.blue),
+      ),
+    );
+
+    _controller.addObject(
+      CanvasObject(
+        dx: 500,
+        dy: 500,
+        width: 500.0,
+        height: 500.0,
+        child: const StaggerDemo(),
+      ),
+    );
+
+    _controller.addObject(
+      CanvasObject(
+        dx: 500,
+        dy: 100,
+        width: 500,
+        height: 500,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Sample Code'),
+          ),
+          body: const Center(child: Text('You have pressed the button times.')),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {},
+            tooltip: 'Increment Counter',
+            child: const Icon(Icons.add),
+          ),
+        ),
       ),
     );
   }
