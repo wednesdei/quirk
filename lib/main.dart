@@ -1,24 +1,51 @@
 import 'package:flutter/material.dart';
-import 'ui/home/screen.dart';
+import 'packages/custompaint/paint.dart';
+import 'packages/custompaint/particles.dart';
+import 'packages/custompaint/quirk.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      darkTheme: ThemeData.dark().copyWith(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      home: const MyHomePage(title: 'Quirk Canvas'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var color = Colors.blue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 1000.0,
+      height: 1000.0,
+      color: Colors.white,
+      child: CustomPaint(
+        painter: Quirk(),
+        size: const Size.square(1000.0),
+        // For painting on foreground
+        // foregroundPainter: DemoPainter(),
       ),
-      // ignore: prefer_const_constructors
-      home: HomeScreen(),
     );
   }
 }

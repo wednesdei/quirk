@@ -1,9 +1,9 @@
-import 'dart:ui';
+// import 'dart:ui';
 
-class RectPoints {
-  RectPoints(this.start, this.end);
+// class RectPoints {
+//   RectPoints(this.start, this.end);
 
-  Offset start, end;
+//   Offset start, end;
 
-  Rect get rect => Rect.fromPoints(start, end);
-}
+//   Rect get rect => Rect.fromPoints(start, end);
+// }
