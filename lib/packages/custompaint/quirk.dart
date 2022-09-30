@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'particles.dart';
 
@@ -29,9 +28,9 @@ class _QuirkState extends State<Quirk> {
 class QuirkPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    //quirkGrid(canvas, size);
-    extraCircles(canvas, size);
-    extraSmallerCircles(canvas, size);
+    quirkGrid(canvas, size);
+    //extraCircles(canvas, size);
+    //extraSmallerCircles(canvas, size);
   }
 
   extraCircles(canvas, size) {
@@ -67,10 +66,11 @@ class QuirkPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 
   @override
   bool? hitTest(Offset position) {
     // TODO: implement hitTest
+    return false;
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'packages/custompaint/paint.dart';
-import 'packages/custompaint/particles.dart';
 import 'packages/custompaint/quirk.dart';
 
 void main() {
@@ -36,15 +34,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 1000.0,
-      height: 1000.0,
-      color: Colors.white,
-      child: CustomPaint(
-        painter: Quirk(),
-        size: const Size.square(1000.0),
-        // For painting on foreground
-        // foregroundPainter: DemoPainter(),
+    return Scaffold(
+      body: const SizedBox.expand(
+        child: Quirk(),
       ),
     );
   }
