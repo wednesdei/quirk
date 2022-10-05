@@ -1,4 +1,4 @@
-import 'package:flutter/gestures.dart';
+/* import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../src/classes/canvas_object.dart';
@@ -254,3 +254,4 @@ extension RectUtils on Rect {
     return Rect.fromLTWH(left, top, width, height);
   }
 }
+ */

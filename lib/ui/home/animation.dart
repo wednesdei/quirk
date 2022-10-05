@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 
 class AnimatedLogo extends AnimatedWidget {
   const AnimatedLogo({super.key, required Animation<double> animation})
@@ -60,3 +60,4 @@ class _LogoAppState extends State<LogoApp> with SingleTickerProviderStateMixin {
   }
   // #docregion print-state
 }
+ */

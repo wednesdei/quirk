@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/* import 'package:flutter/material.dart';
 
 /// These are going to be the default [Themes] for the app.
 /// The light and dark versions are completely minimalistic.
@@ -10,3 +10,4 @@ enum ThemeType {
   vaporwave,
   synthwave,
 }
+ */
